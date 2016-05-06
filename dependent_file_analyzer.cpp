@@ -1,7 +1,3 @@
-// dependent_file_analyzer.cpp : コンソール アプリケーションのエントリ ポイントを定義します。
-//
-
-#include "stdafx.h"
 
 #include <iostream>
 #include <vector>
@@ -116,7 +112,7 @@ void init_reserved_word(StringVector *v){
 
 inline void delete_head_space(std::string &buf){
 	size_t pos;
-	while ((pos = buf.find_first_of(" 　\t")) == 0){
+	while ((pos = buf.find_first_of(" 縲\t")) == 0){
 		buf.erase(buf.begin());
 		if (buf.empty()) break;
 	}
@@ -162,11 +158,6 @@ size_t match_reserved(std::string str){
 	}
 	return std::string::npos;
 }
-
-// 依存ファイルが出現するのは
-// `includeとインスタンシエートの時だけ
-// `include は簡単
-// シンスタンシエートの判別は !in_section && 最初の単語が予約語でない
 
 void line_analysis(std::string str, std::ofstream &out){
 
